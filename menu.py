@@ -1,4 +1,3 @@
-import main
 import cadastro_nova_pessoa
 import verifica_pessoa
 import  deleta_pessoa
