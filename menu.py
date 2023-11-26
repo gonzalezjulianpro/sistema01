@@ -2,17 +2,17 @@ import cadastro_nova_pessoa
 import verifica_pessoa
 import  deleta_pessoa
 
-def menu_apresentacao():
+def menu_apresentacao(): #funcao de apresentacao inicial do menu
     comando = input("1 - Cadastrar Nova Pessoa\n2 - Verificar Pessoas Cadastradas\n3 - Deletar Pessoa Cadastrada\nOpcao: ")
     comando = comando.strip()
     return int(comando)
 
 
-def tente_novamente_tentativa():
+def tente_novamente_tentativa(): #funcao para nova tentativa da funcao tentativa()
     print("Opcao invalida!\nTente novamente!\n")
     tentativa()
 
-def tentativa():
+def tentativa(): #nova tentativa de opcao invalida
     tentativa = input("1 - Deseja tentar novamente.\n0 - Deseja Sair do Programa\nOpcao: ")
     tentativa = int(tentativa.strip())
 
@@ -24,7 +24,7 @@ def tentativa():
         tente_novamente_tentativa()
 
 
-def iniciando():
+def iniciando(): #funcao principal
     print("Menu:\n")
     comando = menu_apresentacao()  # print("Você selecionou o: {}".format(comando)) --- TESTE FUNCAO "menu_apresentacao()"
 
