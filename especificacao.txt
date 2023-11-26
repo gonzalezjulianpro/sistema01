@@ -1,0 +1,6 @@
+Sistema de Cadastro de Pessoas em Arquivo .txt.
+
+1 - Apresentar menu
+    1.1 - Cadastrar nova pessoa
+    1.2 - Verificar pessoas cadastradas
+    1.3 - Deletar pessoa cadastrada
