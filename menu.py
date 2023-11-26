@@ -7,7 +7,6 @@ def menu_apresentacao(): #funcao de apresentacao inicial do menu
     comando = comando.strip()
     return int(comando)
 
-
 def tente_novamente_tentativa(): #funcao para nova tentativa da funcao tentativa()
     print("Opcao invalida!\nTente novamente!\n")
     tentativa()
