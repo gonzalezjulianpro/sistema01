@@ -45,9 +45,15 @@ def criar_lista():#Criando arquivo de banco de dados txt
             print("Opcao invalida!\nRedirencionando para automaticamente para o Menu anterior.")
             cadastro_pessoa_main()
 
-def adiciona():
+def adiciona():#funcao de adicao de pessoa no sistema
 
-    print("A funcao adiciona funciona!")
+    diretorio = input("Insira o caminho completo do diretorio utilizado: ").strip()
+    chama_banco = input("Insira o nome do banco desejado: ").strip()
+    teste_mensagem = input("Escreve mensagem de teste: \n") #Testando escrita em arquivo
+    with open("{}{}.txt".format(diretorio, chama_banco), "a") as escreve_banco:
+        escreve_banco.write("\n{}".format(teste_mensagem))
+        escreve_banco.close()
+    cadastro_pessoa_main()
 
 
 def confere_listas():#Lista todos os bancos que já foram criados
