@@ -7,3 +7,4 @@ def inicializacao():
 
 inicializacao()
 menu.iniciando()
+

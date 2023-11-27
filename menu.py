@@ -24,8 +24,7 @@ def iniciando(): #funcao principal
 
 
 def menu_apresentacao(): #funcao de apresentacao inicial do menu
-    comando = input("1 - Cadastrar Nova Pessoa\n2 - Verificar Pessoas Cadastradas\n3 - Deletar Pessoa Cadastrada\n0 - Sair do Programa\nOpcao: ")
-    comando = comando.strip()
+    comando = input("1 - Cadastrar Nova Pessoa\n2 - Verificar Pessoas Cadastradas\n3 - Deletar Pessoa Cadastrada\n0 - Sair do Programa\nOpcao: ").strip()
     return int(comando)
 
 def tente_novamente_tentativa(): #funcao para nova tentativa da funcao tentativa()
@@ -43,6 +42,8 @@ def tentativa(): #nova tentativa de opcao invalida
     else:
         tente_novamente_tentativa()
 
+def pulaLinha():  # funcao auxiliar para pular linhas
+    print("\n")
 
 
 if(__name__ == "__main__"):
