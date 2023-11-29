@@ -1,8 +1,7 @@
-import csv
-import pandas as pd
 import cadastro_nova_pessoa
 import menu
-
+import pandas as pd
+import csv
 
 def verifica_pessoa_main():
     print("***Menu de verificacao de pessoas***")
@@ -44,6 +43,15 @@ def todos_cadastros():# leitura de banco csv
     print("!!!Retornando ao Menu anterior!!!")
     menu.pulaLinha()
     verifica_pessoa_main()
+
+
+def pessoa_especifica():# leitura no banco csv com insercao de pessoa especifica
+    caminho = input("Passe o caminho completo do banco: ").strip()
+    nome = input("Insira o nome desejado: ").strip()
+    menu.pulaLinha()
+    banco = pd.read_csv(caminho)
+    banco.columns = ["Nome", "Idade", "Profissao", "Status"]
+    print(banco)
 
 
 if(__name__ == "__main__"):

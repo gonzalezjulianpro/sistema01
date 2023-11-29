@@ -1,6 +1,7 @@
 import menu
 import os
-
+import pandas as pd
+import csv
 
 def cadastro_pessoa_main():  #Fucao principal de chamadas
     print("***Menu Cadastro de Pessoas***")
@@ -29,6 +30,7 @@ def criar_lista():#Criando arquivo de banco de dados txt
     confirmacao = int(confirmacao.strip())
     if(confirmacao == 1):
         arquivo = open("{}.csv".format(banco_dado), "w") #comando para criar o arquivo .txt com o nome escolhido pelo usuario
+        arquivo.write("Titulo1,Titulo2,Titulo3,Titulo4")
         arquivo.close()
         cadastro_pessoa_main()
     else:
