@@ -48,10 +48,32 @@ def todos_cadastros():# leitura de banco csv
 def pessoa_especifica():# leitura no banco csv com insercao de pessoa especifica
     caminho = input("Passe o caminho completo do banco: ").strip()
     nome = input("Insira o nome desejado: ").strip()
+    lista = []
     menu.pulaLinha()
-    banco = pd.read_csv(caminho)
-    banco.columns = ["Nome", "Idade", "Profissao", "Status"]
-    print(banco)
+
+    with open(caminho, "r") as banco: #abrindo e efetuando a leitra do banco csv
+        leitor = csv.reader(banco)
+        for linha in leitor:
+            if(linha[0] == nome): #adicionando a linha do csv em uma lista para impressao solicitada
+                lista = linha
+        banco.close()
+
+    print("***Dado Selecionado:***")
+    print ("Nome: {}\nIdade: {}\nProfissao: {}\nEstado Civil: {}".format(lista[0],lista[1],lista[2],lista[3]))
+    menu.pulaLinha()
+
+    comando = int(input("1 - Fazer nova consulta.\n2 - Voltar ao Menu anterior.\n0 - Sair do programa.\nOpcao: ").strip())
+
+    if(comando == 1):
+        pessoa_especifica()
+    elif(comando == 2):
+        verifica_pessoa_main()
+    elif(comando == 0):
+        exit()
+    else:
+        print("!!!Voce nao digitou um valor valido. Retornando ao Menu Principal!!!")
+        menu.iniciando()
+
 
 
 if(__name__ == "__main__"):
