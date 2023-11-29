@@ -3,9 +3,8 @@ import os
 
 
 def cadastro_pessoa_main():  #Fucao principal de chamadas
-    print("Menu Cadastro de Pessoas")
-    opcao = input("1 - Criar Nova Lista\n2 - Adicionar em Lista já existente\n3 - Conferir Lista Existente\n0 - Voltar para Menu Principal\nOpcao: ")
-    opcao = int(opcao.strip())
+    print("***Menu Cadastro de Pessoas***")
+    opcao = int(input("1 - Criar Nova Lista\n2 - Adicionar em Lista já existente\n3 - Conferir Lista Existente\n0 - Voltar para Menu Principal\nOpcao: ").strip())
 
     if(opcao == 1):
         criar_lista()
@@ -49,7 +48,7 @@ def adiciona():#funcao de adicao de pessoa no sistema
 
     diretorio = input("Insira o caminho completo do diretorio utilizado: ").strip()
     chama_banco = input("Insira o nome do banco desejado: ").strip()
-    menu.pulaLinha()
+    #menu.pulaLinha()
     print("Banco Escolhido: {}{}.csv".format(diretorio, chama_banco))
     confirma = int(input("1 - O banco esta correto.\n2 - O banco esta incorreto\nOpcao: "))# primeira confirmacao necessaria
 
