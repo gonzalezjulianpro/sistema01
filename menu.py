@@ -11,11 +11,11 @@ def iniciando(): #funcao principal
         #print("1 - valido") #teste validação
         cadastro_nova_pessoa.cadastro_pessoa_main()#chamada de cadastro
     elif(comando == 2):
-        print("2 - valido") #teste validação
+        #print("2 - valido") #teste validação
         verifica_pessoa.verifica_pessoa_main()
     elif(comando == 3):
-        print("3 - valido") #teste validação
-        deleta_pessoa()
+        #print("3 - valido") #teste validação
+        deleta_pessoa.deleta_pessoa_main()
     elif(comando == 0):
         exit()
     else:

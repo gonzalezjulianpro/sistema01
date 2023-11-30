@@ -65,6 +65,7 @@ def adiciona():#funcao de adicao de pessoa no sistema
         with open("{}{}.csv".format(diretorio, chama_banco), "a") as escreve_banco: # Escrevendo no arquivo
             escreve_banco.write("\n{}".format(dados))
             escreve_banco.close()
+        print("Cadastro Realizado com Sucesso!!!")
         cadastro_pessoa_main()
     elif (confirma == 2):
         confirma2 = int(input("1 - Tentar novamente.\n2 - Cancelar e retornar ao Menu anterior\nOpcao: "))# Segunda confirmacao necessaria
