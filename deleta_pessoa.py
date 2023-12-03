@@ -2,6 +2,7 @@ import cadastro_nova_pessoa
 import menu
 import csv
 import verifica_pessoa
+import pandas as pd
 
 def deleta_pessoa_main():
     print("***Menu de exclusao de pessoas***")
@@ -44,38 +45,34 @@ def deleta_tudo(): #funcao apaga todos os dados do banco csv
 
 def deleta_especifico(): #funcao para deletar linha especifica do csv
     caminho = input("Por favor digite o caminho completo para o banco que sera excluido: ")
-    nome = input("O dado de quem sera apagado?\nNome: ")
-    lista = []
-    with open(caminho, "r") as banco:
-        leitor = csv.reader(banco)
-        for linha in leitor:
-            while(linha[0] != nome):
-                lista = linha
-                with open(caminho, "w") as new_banco:
-                    escritor = csv.writer(new_banco)
-                    escritor.writerow(linha)
-                new_banco.close()
-        banco.close()
+    nome_input = input("O dado de quem sera apagado?\nNome: ")
+    column_name = "Name"
+    with open(caminho, "r") as banco_leitura: #Leitura do arquivo
+        reader = csv.DictReader(banco_leitura, delimiter=";")
+        rows = list(reader)
+        index_to_remove = None
+
+        for i, row in enumerate(rows):
+            print(rows)
+            if row[column_name] == nome_input:
+                index_to_remove = i
+                break
+
+            if index_to_remove is not None:
+                removed_row = rows.pop(index_to_remove)
+
+                with open(caminho, "w", newline="") as banco_escrita:
+                    writer = csv.DictWriter(banco_escrita, fieldnames=reader.fieldnames)
+                    writer.writeheader()
+                    writer.writerows(rows)
+
+                print("Linha apagada: {}".format(removed_row))
+            else:
+                print("Linha não encontrada: {}".format(nome_input))
+
     print("Dado apagado com sucesso!")
     menu.pulaLinha()
     deleta_pessoa_main()
-
-'''def deleta_especifico(): #funcao para deletar linha especifica do csv
-    caminho = input("Por favor digite o caminho completo para o banco que sera excluido: ")
-    menu.pulaLinha()
-    nome = input("O dado de quem sera apagado?\nNome: ")
-    lista = []
-    with open(caminho, "r") as in_file, open(caminho, "w") as out_file:
-        reader = csv.reader(in_file)
-        writer = csv.writer(out_file)
-
-        for linha in reader:
-            if(linha[0] != nome):
-                writer.writerow(linha)
-            else:
-                pass
-        in_file.close()
-        out_file.close()'''
 
 
 if(__name__ == "__main__"):

@@ -29,10 +29,16 @@ def criar_lista():#Criando arquivo de banco de dados txt
     confirmacao = input("1 - O nome esta correto\n2 - O nome esta incorreto\nOpcao: ")#Confirmacao para criacao de banco
     confirmacao = int(confirmacao.strip())
     if(confirmacao == 1):
-        arquivo = open("{}.csv".format(banco_dado), "w") #comando para criar o arquivo .txt com o nome escolhido pelo usuario
-        arquivo.write("Titulo1,Titulo2,Titulo3,Titulo4")
+        '''arquivo = open("{}.csv".format(banco_dado), "w") #comando para criar o arquivo .txt com o nome escolhido pelo usuario
+        arquivo.write("Nome,Idade,Profissao,Status")
         arquivo.close()
-        cadastro_pessoa_main()
+        cadastro_pessoa_main()'''
+        with open("{}.csv".format(banco_dado), "w", newline="") as arquivo:
+            fieldname = ["Nome", "Idade", "Profissao", "Status"]
+            writer = csv.DictWriter(arquivo,fieldnames=fieldname)
+            writer.writeheader()
+            arquivo.close()
+            cadastro_pessoa_main()
     else:
         confirmacao2 = input("1 - Tentar Novamente\n2 - Voltar ao Menu Anterior\nOpcao: ")#Confirmacao para nova criacao de banco, tentar novamente?
         confirmacao2 = int(confirmacao2.strip())
