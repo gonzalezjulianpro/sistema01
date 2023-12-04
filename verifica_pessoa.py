@@ -1,6 +1,5 @@
 import cadastro_nova_pessoa
 import menu
-import pandas as pd
 import csv
 
 def verifica_pessoa_main():
@@ -22,44 +21,36 @@ def verifica_pessoa_main():
         print("\nOpcao invalida. Tente Novamente\n")
         verifica_pessoa_main()
 
-
-'''
-def todos_cadastros():# leitura de banco csv
-    banco = input("Passe o caminho completo do banco: ").strip()
-    with open("{}".format(banco), "r") as mostra_banco: #abertura do arquivo csv em modo de leitura
-        dado = csv.reader(mostra_banco)
-        for linha in dado: #impressao linha por linha do arquivo csv
-
-            print(linha)
-    mostra_banco.close()
-'''
 def todos_cadastros():# leitura de banco csv
     caminho = input("Passe o caminho completo do banco: ").strip()
-    menu.pulaLinha()
-    banco = pd.read_csv(caminho) #abertura do arquivo csv em modo de leitura
-    banco.columns = ["Nome", "Idade", "Profissao", "Status"] #criando colunas para exibicoa do arquivo de banco csv
-    print(banco)
+    menu.pulaLinha() #FAZER NOVA IMPLEMENTACAO USANDO LIB CSV
+    with open(caminho, "r") as banco:
+        reader = csv.reader(banco, delimiter=";")
+        for row in reader:
+            print(row)
+        banco.close()
     menu.pulaLinha()
     print("!!!Retornando ao Menu anterior!!!")
-    menu.pulaLinha()
     verifica_pessoa_main()
 
 
 def pessoa_especifica():# leitura no banco csv com insercao de pessoa especifica
     caminho = input("Passe o caminho completo do banco: ").strip()
     nome = input("Insira o nome desejado: ").strip()
+    column_name = "Nome"#defini a pesquisa por nome, porem pode ser criado condicoes para pesquisa por qualquer campo
     lista = []
     menu.pulaLinha()
 
-    with open(caminho, "r") as banco: #abrindo e efetuando a leitra do banco csv
-        leitor = csv.reader(banco)
-        for linha in leitor:
-            if(linha[0] == nome): #adicionando a linha do csv em uma lista para impressao solicitada
-                lista = linha
-        banco.close()
-
-    print("***Dado Selecionado:***")
-    print ("Nome: {}\nIdade: {}\nProfissao: {}\nEstado Civil: {}".format(lista[0],lista[1],lista[2],lista[3]))
+    with open(caminho, "r") as banco_reader: #abrindo arquivo
+        reader = csv.DictReader(banco_reader, delimiter=";") #criando leitor
+        rows = list(reader) #colocando as linhas em sequencia
+        for row in rows:
+            #print(rows)
+            if (row[column_name] == nome):
+                lista = row
+                print("Resultado: {}".format(lista))
+        banco_reader.close()
+    #print("Resultado: {}".format(lista))
     menu.pulaLinha()
 
     comando = int(input("1 - Fazer nova consulta.\n2 - Voltar ao Menu anterior.\n0 - Sair do programa.\nOpcao: ").strip())

@@ -57,13 +57,13 @@ def adiciona():#funcao de adicao de pessoa no sistema
 
     if (confirma == 1):
         print("*** Novo Cadastro ***")
-        nome = input("Nome: ")
-        idade = input("Idade: ")
-        profissao = input("Profissao: ")
-        status_civil = input("Status Civil: ")
+        nome = input("Nome: ").strip()
+        idade = input("Idade: ").strip()
+        profissao = input("Profissao: ").strip()
+        status_civil = input("Status Civil: ").strip()
         with open("{}{}.csv".format(diretorio, chama_banco), "a") as escreve_banco: # Escrevendo no arquivo
             fieldname = ["Nome", "Idade", "Profissao", "Status"]
-            writer = csv.DictWriter(escreve_banco, fieldnames=fieldname, delimiter=";",)
+            writer = csv.DictWriter(escreve_banco, fieldnames=fieldname, delimiter=";")
             writer.writerow({"Nome": nome, "Idade": idade, "Profissao": profissao, "Status": status_civil})
             escreve_banco.close()
         print("Cadastro Realizado com Sucesso!!!")
