@@ -63,7 +63,7 @@ def adiciona():#funcao de adicao de pessoa no sistema
         status_civil = input("Status Civil: ")
         with open("{}{}.csv".format(diretorio, chama_banco), "a") as escreve_banco: # Escrevendo no arquivo
             fieldname = ["Nome", "Idade", "Profissao", "Status"]
-            writer = csv.DictWriter(escreve_banco, fieldnames=fieldname, delimiter=";")
+            writer = csv.DictWriter(escreve_banco, fieldnames=fieldname, delimiter=";",)
             writer.writerow({"Nome": nome, "Idade": idade, "Profissao": profissao, "Status": status_civil})
             escreve_banco.close()
         print("Cadastro Realizado com Sucesso!!!")
