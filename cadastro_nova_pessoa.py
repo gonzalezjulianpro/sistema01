@@ -29,13 +29,9 @@ def criar_lista():#Criando arquivo de banco de dados txt
     confirmacao = input("1 - O nome esta correto\n2 - O nome esta incorreto\nOpcao: ")#Confirmacao para criacao de banco
     confirmacao = int(confirmacao.strip())
     if(confirmacao == 1):
-        '''arquivo = open("{}.csv".format(banco_dado), "w") #comando para criar o arquivo .txt com o nome escolhido pelo usuario
-        arquivo.write("Nome,Idade,Profissao,Status")
-        arquivo.close()
-        cadastro_pessoa_main()'''
         with open("{}.csv".format(banco_dado), "w", newline="") as arquivo:
             fieldname = ["Nome", "Idade", "Profissao", "Status"]
-            writer = csv.DictWriter(arquivo,fieldnames=fieldname)
+            writer = csv.DictWriter(arquivo,fieldnames=fieldname, delimiter=";")
             writer.writeheader()
             arquivo.close()
             cadastro_pessoa_main()
@@ -56,9 +52,8 @@ def adiciona():#funcao de adicao de pessoa no sistema
 
     diretorio = input("Insira o caminho completo do diretorio utilizado: ").strip()
     chama_banco = input("Insira o nome do banco desejado: ").strip()
-    #menu.pulaLinha()
     print("Banco Escolhido: {}{}.csv".format(diretorio, chama_banco))
-    confirma = int(input("1 - O banco esta correto.\n2 - O banco esta incorreto\nOpcao: "))# primeira confirmacao necessaria
+    confirma = int(input("1 - O banco esta correto.\n2 - O banco esta incorreto.\nOpcao: "))# primeira confirmacao necessaria
 
     if (confirma == 1):
         print("*** Novo Cadastro ***")
@@ -66,10 +61,10 @@ def adiciona():#funcao de adicao de pessoa no sistema
         idade = input("Idade: ")
         profissao = input("Profissao: ")
         status_civil = input("Status Civil: ")
-        dados = "{},{},{},{}".format(nome, idade, profissao, status_civil)
-        dados = dados.strip()
         with open("{}{}.csv".format(diretorio, chama_banco), "a") as escreve_banco: # Escrevendo no arquivo
-            escreve_banco.write("\n{}".format(dados))
+            fieldname = ["Nome", "Idade", "Profissao", "Status"]
+            writer = csv.DictWriter(escreve_banco, fieldnames=fieldname, delimiter=";")
+            writer.writerow({"Nome": nome, "Idade": idade, "Profissao": profissao, "Status": status_civil})
             escreve_banco.close()
         print("Cadastro Realizado com Sucesso!!!")
         cadastro_pessoa_main()

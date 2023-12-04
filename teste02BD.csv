@@ -1,1 +1,6 @@
-Nome,Idade,Profissao,Status
+Nome;Idade;Profissao;Status
+Julian;27;Analista;Casado
+Camila;28;Farmaceutica;Casada
+Leoncio;53;Administrador;Casado
+Rose;47;Pedagoga;Casada
+Fernandinho;18;Nenhum;Solteiro
