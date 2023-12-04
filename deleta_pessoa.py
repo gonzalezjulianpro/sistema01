@@ -46,7 +46,7 @@ def deleta_tudo(): #funcao apaga todos os dados do banco csv
 def deleta_especifico(): #funcao para deletar linha especifica do csv
     caminho = input("Por favor digite o caminho completo para o banco que sera excluido: ")
     nome_input = input("O dado de quem sera apagado?\nNome: ")
-    column_name = "Name"
+    column_name = "Nome"
     with open(caminho, "r") as banco_leitura: #Leitura do arquivo
         reader = csv.DictReader(banco_leitura, delimiter=";")
         rows = list(reader)
@@ -68,7 +68,7 @@ def deleta_especifico(): #funcao para deletar linha especifica do csv
 
                 print("Linha apagada: {}".format(removed_row))
             else:
-                print("Linha não encontrada: {}".format(nome_input))
+                print("Linha não encontrada: {}{}".format(column_name, nome_input))
 
     print("Dado apagado com sucesso!")
     menu.pulaLinha()
