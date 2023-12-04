@@ -2,7 +2,6 @@ import cadastro_nova_pessoa
 import menu
 import csv
 import verifica_pessoa
-import pandas as pd
 
 def deleta_pessoa_main():
     print("***Menu de exclusao de pessoas***")
@@ -44,9 +43,10 @@ def deleta_tudo(): #funcao apaga todos os dados do banco csv
 
 
 def deleta_especifico(): #funcao para deletar linha especifica do csv
-    caminho = input("Por favor digite o caminho completo para o banco que sera excluido: ")
-    nome_input = input("O dado de quem sera apagado?\nNome: ")
+    caminho = input("Por favor digite o caminho completo para o banco que sera excluido: ").strip()
+    nome_input = input("O dado de quem sera apagado?\nNome: ").strip()
     column_name = "Nome"
+    row = []
     with open(caminho, "r") as banco_leitura: #Leitura do arquivo
         reader = csv.DictReader(banco_leitura, delimiter=";")
         rows = list(reader)
@@ -68,7 +68,7 @@ def deleta_especifico(): #funcao para deletar linha especifica do csv
 
                 print("Linha apagada: {}".format(removed_row))
             else:
-                print("Linha não encontrada: {}{}".format(column_name, nome_input))
+                print("Linha não encontrada --- {}: {}".format(column_name, nome_input))
 
     print("Dado apagado com sucesso!")
     menu.pulaLinha()
