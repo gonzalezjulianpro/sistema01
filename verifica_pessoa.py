@@ -4,7 +4,7 @@ import csv
 
 def verifica_pessoa_main():
     print("***Menu de verificacao de pessoas***")
-    opcao = int(input("1 - Listar bancos disponiveis\n2 - Listar todos os cadastros em lista especifica\n3 - Lista dados de pessoa especifica\n0 - Voltar ao Menu anterior\n Opcao: ").strip())
+    opcao = int(input("1 - Listar bancos disponiveis\n2 - Listar todos os cadastros em lista especifica\n3 - Listar dados de pessoa especifica\n0 - Voltar ao Menu anterior\n Opcao: ").strip())
 
     if (opcao == 1):
         cadastro_nova_pessoa.confere_listas()
@@ -38,7 +38,6 @@ def pessoa_especifica():# leitura no banco csv com insercao de pessoa especifica
     caminho = input("Passe o caminho completo do banco: ").strip()
     nome = input("Insira o nome desejado: ").strip()
     column_name = "Nome"#defini a pesquisa por nome, porem pode ser criado condicoes para pesquisa por qualquer campo
-    lista = []
     menu.pulaLinha()
 
     with open(caminho, "r") as banco_reader: #abrindo arquivo

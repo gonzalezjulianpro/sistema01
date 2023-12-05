@@ -45,32 +45,34 @@ def deleta_tudo(): #funcao apaga todos os dados do banco csv
 def deleta_especifico(): #funcao para deletar linha especifica do csv
     caminho = input("Por favor digite o caminho completo para o banco que sera excluido: ").strip()
     nome_input = input("O dado de quem sera apagado?\nNome: ").strip()
-    column_name = "Nome"
-    row = []
+    column_name = "Nome"#fixei por nome, porem pode ser colocado condicao para selecao
+    index_to_remove = None
+
     with open(caminho, "r") as banco_leitura: #Leitura do arquivo
         reader = csv.DictReader(banco_leitura, delimiter=";")
         rows = list(reader)
-        index_to_remove = None
 
-        for i, row in enumerate(rows):
-            print(rows)
+        for i,row in enumerate(rows):
+
             if row[column_name] == nome_input:
+                dado = row
                 index_to_remove = i
                 break
 
-            if index_to_remove is not None:
-                removed_row = rows.pop(index_to_remove)
+    banco_leitura.close()#fechando arquivo de leitura
+    if index_to_remove is not None:
+        removed_row = rows.pop(index_to_remove)#removendo linha escolhida
 
-                with open(caminho, "w", newline="") as banco_escrita:
-                    writer = csv.DictWriter(banco_escrita, fieldnames=reader.fieldnames)
-                    writer.writeheader()
-                    writer.writerows(rows)
+        with open(caminho, "w", newline="") as banco_escrita:#iniciando sobrescricao
+            writer = csv.DictWriter(banco_escrita, fieldnames=reader.fieldnames, delimiter=";")
+            writer.writeheader()
+            writer.writerows(rows)
 
-                print("Linha apagada: {}".format(removed_row))
-            else:
-                print("Linha não encontrada --- {}: {}".format(column_name, nome_input))
+    else:
+        print("Linha não encontrada --- {}: {}".format(column_name, nome_input))
 
-    print("Dado apagado com sucesso!")
+    banco_escrita.close()#fechando arquivo escrita
+    print("Dado apagado com sucesso: {}".format(dado))
     menu.pulaLinha()
     deleta_pessoa_main()
 
