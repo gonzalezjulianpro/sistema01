@@ -1,6 +1,5 @@
 import menu
 import os
-import pandas as pd
 import csv
 
 def cadastro_pessoa_main():  #Fucao principal de chamadas
